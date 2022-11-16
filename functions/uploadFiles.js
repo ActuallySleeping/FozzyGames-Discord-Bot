@@ -11,11 +11,11 @@ export const uploadFiles = (serverName, files) => new Promise (async (resolve, r
     const server = servers[serverName];
     
     for await (const file of files) {
-        const res = await fetch(`https://pt.fozzy.games/api/client/servers/${server}/files/upload`, {
+        const res = await fetch(`https://pt.fozzy.games/api/client/servers/${server.id}/files/upload`, {
             "headers": HEADERS,
             "method": "GET",
         })
-        
+
         const url = (await res.json()).attributes.url + `&directory=${file.path}`;
         const form = new FormData();
         form.append('files', new Blob([file.content], { type: 'text/plain' }), file.name);
