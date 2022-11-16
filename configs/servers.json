@@ -1,0 +1,58 @@
+{
+    "abb": {
+        "id" : "563a1fbd-921b-4c23-94c5-af13b3c71061",
+        "state": "undefined",
+        "ip": "23.109.60.49:27015",
+        "map": "Aberration",
+        "image" : "https://gemuese-cluster.de/images/ark/aberration.png"
+    },
+    "ext": {
+        "id" : "2c643bf4-65af-4bb2-bea4-21f56a2afcfc",
+        "state": "undefined",
+        "ip": "23.109.60.54:27015",
+        "map": "Extinction",
+        "image" : "https://gemuese-cluster.de/images/ark/extinction.png"
+    },
+    "cen": {
+        "id" : "9b014fc8-e8df-4ada-a60a-c50947f52312",
+        "state": "undefined",
+        "ip": "23.109.60.58:27015",
+        "map": "TheCenter",
+        "image" : "https://gemuese-cluster.de/images/ark/thecenter.png"
+    },
+    "isl": {
+        "id" : "ba99ef40-f0fd-4e0b-a229-8aebe73e322a",
+        "state": "undefined",
+        "ip": "23.109.60.61:27015",
+        "map": "TheIsland",
+        "image" : "https://gemuese-cluster.de/images/ark/theisland.png"
+    },
+    "val": {
+        "id" : "96227144-0a0e-4d71-b88f-83a3da74a358",
+        "state": "undefined",
+        "ip": "23.109.60.62:27015",
+        "map": "Valguero",
+        "image" : "https://gemuese-cluster.de/images/ark/valguero.png" 
+    },
+    "fjo": {
+        "id" : "2317954a-60c7-4367-bc46-a5bbf01a0c57",
+        "state": "undefined",
+        "ip": "23.109.60.63:27015",
+        "map": "Fjordur",
+        "image" : "https://gemuese-cluster.de/images/ark/fjordur.png"
+    },
+    "los": {
+        "id" : "c0182755-2ac2-48d3-83d6-cfa87ffbd1f6",
+        "state": "undefined",
+        "ip": "23.109.60.64:27015",
+        "map": "LostIsland",
+        "image" : "https://gemuese-cluster.de/images/ark/lostisland.png"
+    },
+    "gen2": {
+        "id" :  "3234d1c3-ab09-4912-ae8d-3c5bf6fc3792",
+        "state": "undefined",
+        "ip": "23.109.60.65:27015",
+        "map": "Genesis2",
+        "image" : "https://gemuese-cluster.de/images/ark/genesisp2.png"
+    }
+}
