@@ -41,12 +41,12 @@
         "map": "Fjordur",
         "image" : "https://gemuese-cluster.de/images/ark/fjordur.png"
     },
-    "los": {
+    "rag": {
         "id" : "c0182755-2ac2-48d3-83d6-cfa87ffbd1f6",
         "state": "undefined",
         "ip": "23.109.60.64:27015",
-        "map": "LostIsland",
-        "image" : "https://gemuese-cluster.de/images/ark/lostisland.png"
+        "map": "Ragnarok",
+        "image" : "https://gemuese-cluster.de/images/ark/ragnarok.png"
     },
     "gen2": {
         "id" :  "3234d1c3-ab09-4912-ae8d-3c5bf6fc3792",

@@ -38,11 +38,54 @@ const command = {
     async execute(interaction, args) {
         if (await interaction.member.roles.cache.has(process.env.SERVER_ROLE_STAFF)) {
 
-        interaction.reply({ content: "Sending panel...", ephemeral: true });
+        await interaction.deferReply();
 
         const panel = interaction.options.get('id').value
 
         if (panel === 'rates') {
+            const { readIni } = await import('../functions/readIni.js');
+
+            let GameIni = readIni('configs/Game.ini');
+            // GameIni['/script/shootergame.shootergamemode']['bAllowUnlimitedRespecs']
+
+            const fs = await import('fs');
+            fs.writeFileSync('../result.txt', JSON.stringify(GameIni))
+
+            let rates = new EmbedBuilder()
+                .setTitle('Rates')
+                .setDescription('The rates of the server')
+                .setColor('#fc4e03')
+                .setTimestamp()
+                .setFooter({ text: 'https://game.fozzy.com/chorks', iconURL: 'https://cdn.survivetheark.com/uploads/monthly_2022_09/1411926892_fozzygameslogo.thumb.png.eba4ad9b43ef7ee7917214cb77201c1a.png' })
+                .addFields(
+                    { name: 'Tribe / Players', value : ""
+                    +`Max Players in Tribe : ${GameIni['/script/shootergame.shootergamemode']['MaxNumberOfPlayersInTribe']}\n`
+                    +``
+                    },
+                    { name: 'Taming', value: ""
+                    +`a`
+                    },
+                    { name: 'Breeding', value: "" //OK
+                    +`Egg Hatch Speed : ${GameIni['/script/shootergame.shootergamemode']['EggHatchSpeedMultiplier']}x\n`
+                    +`Mating Speed : ${GameIni['/script/shootergame.shootergamemode']['MatingIntervalMultiplier']}x\n`
+                    +`Mating Interval : ${GameIni['/script/shootergame.shootergamemode']['MatingIntervalMultiplier']}x\n`
+                    +`Baby Mature Speed : ${GameIni['/script/shootergame.shootergamemode']['BabyMatureSpeedMultiplier']}x\n`
+                    +`Baby Cuddle Interval : ${GameIni['/script/shootergame.shootergamemode']['BabyCuddleIntervalMultiplier']}x\n`
+                    },
+                    { name: 'Gathering', value: ""
+                    +`Experience Multiplier : ${GameIni['/script/shootergame.shootergamemode']['XPMultiplier']}x\n`
+                    +`Raw Element : ${GameIni['/script/shootergame.shootergamemode']['HarvestResourceItemAmountClassMultipliers']['PrimalItemResource_Element_C']['Multiplier']}x\n`
+                    +`Element Shards : ${GameIni['/script/shootergame.shootergamemode']['HarvestResourceItemAmountClassMultipliers']['PrimalItemResource_ElementShard_Child_C']['Multiplier']}x\n`
+                    },
+                    { name: 'Misc', value: ""
+                    +`Crop Grow Speed : ${GameIni['/script/shootergame.shootergamemode']['CropGrowthSpeedMultiplier']}x\n`
+                    +`Hair Grow Speed : ${GameIni['/script/shootergame.shootergamemode']['HairGrowthSpeedMultiplier']}x\n`
+                    +`Mindwipe Cooldown : ${GameIni['/script/shootergame.shootergamemode']['bAllowUnlimitedRespecs'] === 'True' ? '0' : GameIni['/script/shootergame.shootergamemode']['bAllowUnlimitedRespecs'] / 60}min\n`
+                    +`Official Placement : ${GameIni['/script/shootergame.shootergamemode']['bDisableStructurePlacementCollision'] === 'No' ? 'Yes' : 'False'}\n`
+                    }
+                )
+            interaction.editReply({ embeds: [rates] });
+
         }
         else if (panel === 'rules') {
             send(interaction, 'Discord Rules', `All the cluster is sponsorised by games fozzy.\n\n- No racism,\n- No hates,\n- No porn/sexual/Gore pictures/gif/video\n- No politics,\n- No discord links,\n- No adds for other servers, \n\nDo not insults people, staff or any other people for any reason. \n\nDoing ads for other servers/communities is not allowed in discord also in private message.\n\nSharing cheat or any dupe methode is not allowed also in private message it will be instant ban. \n\nSharing porn/sexual or gore video/gif/pictures is not tolerate.`)
