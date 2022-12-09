@@ -3,6 +3,7 @@ import { getServerState } from '../functions/getServerState.js';
 import servers from '../configs/servers.json' assert { type: 'json' };
 import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
+import fs from 'fs';
 
 let serversInfo = servers;
 let previousInfo = {};
@@ -27,8 +28,10 @@ export const ready = (client, options) => {
     
             for (let nameID of Object.keys(serversInfo)) {
                 const state = serversInfo[nameID]["state"];
-                
+
                 if (previousInfo[nameID]["state"] != state) {
+                    fs.appendFileSync(`./logs/${nameID}.log`, `${new Date().toLocaleString()} - ${previousInfo[nameID]["state"]} - ${state}\n`);
+
                     channel.send({ embeds : [new EmbedBuilder()
                         .setTitle(`Server Status`)
                         .setDescription(`${serversInfo[nameID]["map"]} is now ${state}`)
