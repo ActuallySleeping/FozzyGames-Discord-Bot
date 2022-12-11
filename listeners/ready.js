@@ -1,8 +1,8 @@
-import { EmbedBuilder  } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { getServerState } from '../functions/getServerState.js';
 import servers from '../configs/servers.json' assert { type: 'json' };
 import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
+dotenv.config();
 import fs from 'fs';
 
 let serversInfo = servers;
@@ -52,7 +52,7 @@ export const ready = (client, options) => {
                         ]});
                 }
             }
-        }, 1000 * 10 * 1);
+        }, 1000 * 30 * 1);
     
     });
 

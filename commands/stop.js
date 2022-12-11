@@ -29,25 +29,18 @@ const command = {
         
         if (await interaction.member.roles.cache.has(process.env.SERVER_ROLE_RESTARTER)) {
 
-        interaction.deferReply();
-
         const name = interaction.options.get('map').value;
 
         const state = await getServerState(name);
 
         if (state !== "running" && state !== "starting") {
-            try {
-                await interaction.reply(`${servers[name].map} is already stopped!`);
-            } catch (e) {
-                await interaction.editReply(`${servers[name].map} is already stopped!`);
-            }
-            return;
-
+            await interaction.reply(`${servers[name].map} is already stopped!`);
         } else {
 
             const result = await changeServerState(name, "stop");
 
-            if (result) return interaction.editReply(`Successfully stopped ${servers[name].map}!`);    
+            if (result) return interaction.reply(`Successfully stopped ${servers[name].map}!`);    
+            else return interaction.reply(`Failed to stop ${servers[name].map}!`);
         }
 
         } else interaction.reply({ content : 'You don\'t have permission to use this command!', ephemeral: true} )

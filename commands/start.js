@@ -29,19 +29,18 @@ const command = {
 
         if (await interaction.member.roles.cache.has(process.env.SERVER_ROLE_RESTARTER)) {
 
-        interaction.deferReply();
-
         const name = interaction.options.get('map').value;
 
         const state = await getServerState(name);
 
         if (state !== "offline") {
-            return interaction.editReply(`${servers[name].map} is already started!`);
+            return interaction.reply(`${servers[name].map} is already started!`);
         }
 
         const result = await changeServerState(name, "start");
 
-        if (result) return interaction.editReply(`Successfully started ${servers[name].map}!`);
+        if (result) return interaction.reply(`Successfully started ${servers[name].map}!`);
+        else return interaction.reply(`Failed to start ${servers[name].map}!`);
 
         } else interaction.reply({ content : 'You don\'t have permission to use this command!', ephemeral: true} )
     }

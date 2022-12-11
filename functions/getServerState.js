@@ -1,6 +1,7 @@
 import servers from '../configs/servers.json' assert { type: 'json' };
-import puppeteer from 'puppeteer';
 import { HEADERS } from './getHeaders.js';
+
+import axios from 'axios';
 
 const SERVER_IDS = Object.keys(servers);
 
@@ -9,20 +10,12 @@ export async function getServerState(serverName) {
 
     const serverID = servers[serverName].id;
 
-    const browser = await puppeteer.launch({
-        headless: true,
-    });
-    const page = await browser.newPage();
+    const res = await axios.get(
+        `https://pt.fozzy.games/api/client/servers/${serverID}/resources`,
+        {
+            headers: HEADERS
+        }
+    );
 
-    await page.setExtraHTTPHeaders(HEADERS);
-    await page.goto(`https://pt.fozzy.games/api/client/servers/${serverID}/resources`);
-
-    const element = await page.$('body > pre:nth-child(1)')
-    const content = await page.evaluate(el => el.textContent, element);
-
-    const json = JSON.parse(content);
-    
-    await browser.close();
-
-    return json.attributes.current_state;
+    return res.status == 200 ? res.data.attributes.current_state : "Error";
 }

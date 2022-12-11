@@ -12,7 +12,6 @@ export const deleteFiles = (serverName, path, files) => new Promise ((resolve, r
     axios.post(`https://pt.fozzy.games/api/client/servers/${server}/files/delete`, {
         root: path,
         files: files
-        
     }, {
         headers: HEADERS
 
